@@ -1,6 +1,6 @@
 # encodeformastodon
 
-Simple command-line tool for macOS that encodes videos in a format suitable for publishing to Mastodon.
+Simple command-line tool for macOS that encodes videos in a format suitable for publishing to Mastodon. Runs on macOS 12 or later.
 
 I wrote this tool because upon uploading [a vertical video to my Mastodon account](https://mastodon.social/@_inside/109540102047492623), I noticed that it didn't convert the video properly, resulting in a distorted video.
 This tool is a temporary workaround until Mastodon gets better support for video uploads. It also serves as a simple example of how to use AVFoundation for this sort of video manipulation.
