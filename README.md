@@ -7,6 +7,8 @@ This tool is a temporary workaround until Mastodon gets better support for video
 
 All it does is resize the video to fit in a 1920x1080 resolution, pillar-boxing if needed.
 
+[A notarized build installer is available in the releases page](https://github.com/insidegui/encodeformastodon/releases/latest).
+
 ```
 OVERVIEW: Encodes and resizes any input video in a format suitable for
 publishing to Mastodon.
