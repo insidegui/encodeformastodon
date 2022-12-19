@@ -17,7 +17,7 @@ struct EncodeForMastodon: AsyncParsableCommand {
     var renderSize: CGSize { CGSize(width: 1920, height: 1080) }
 
     func run() async throws {
-        let inputURL = URL(filePath: path)
+        let inputURL = URL(fileURLWithPath: path)
         guard FileManager.default.fileExists(atPath: inputURL.path) else {
             throw ValidationError("Input file doesn't exist at \(inputURL.path)")
         }
@@ -59,7 +59,7 @@ struct EncodeForMastodon: AsyncParsableCommand {
         }
 
         /// Create a composition based on the input video asset that uses a CoreImage filter pipeline to render each frame.
-        let composition = try await AVMutableVideoComposition.videoComposition(with: asset, applyingCIFiltersWithHandler: { request in
+        let composition = AVMutableVideoComposition(asset: asset, applyingCIFiltersWithHandler: { request in
             /// Grab the input video frame from the render request.
             let videoFrame = request.sourceImage
             /// Create a `CIImage` for the black background.
