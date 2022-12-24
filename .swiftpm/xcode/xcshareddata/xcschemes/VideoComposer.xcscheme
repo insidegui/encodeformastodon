@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "encodeformastodon"
-               BuildableName = "encodeformastodon"
-               BlueprintName = "encodeformastodon"
+               BlueprintIdentifier = "VideoComposer"
+               BuildableName = "VideoComposer"
+               BlueprintName = "VideoComposer"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -39,31 +39,7 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      viewDebuggingEnabled = "No">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "encodeformastodon"
-            BuildableName = "encodeformastodon"
-            BlueprintName = "encodeformastodon"
-            ReferencedContainer = "container:">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "/Users/insidegui/Downloads/RPReplay_Final1671886744.mov"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "XCODE"
-            value = "1"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
+      allowLocationSimulation = "YES">
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -71,16 +47,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "encodeformastodon"
-            BuildableName = "encodeformastodon"
-            BlueprintName = "encodeformastodon"
+            BlueprintIdentifier = "VideoComposer"
+            BuildableName = "VideoComposer"
+            BlueprintName = "VideoComposer"
             ReferencedContainer = "container:">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
