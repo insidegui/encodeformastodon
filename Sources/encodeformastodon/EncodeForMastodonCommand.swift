@@ -7,9 +7,12 @@ import CoreImage.CIFilterBuiltins
 private var progressTimer = Timer.publish(every: 0.1, on: .main, in: .common)
 
 @main
-struct EncodeForMastodon: AsyncParsableCommand {
+struct EncodeForMastodonCommand: AsyncParsableCommand {
 
-    static let configuration = CommandConfiguration(commandName: "encodeformastodon", abstract: "Encodes and resizes any input video in a format suitable for publishing to Mastodon.")
+    static let configuration = CommandConfiguration(
+        commandName: "encodeformastodon",
+        abstract: "Encodes and resizes any input video in a format suitable for publishing to Mastodon."
+    )
 
     @Argument(help: "Path to the video file that will be encoded")
     var path: String
@@ -34,6 +37,38 @@ struct EncodeForMastodon: AsyncParsableCommand {
 
         let asset = AVAsset(url: inputURL)
 
+        let composition = try await buildComposition(with: asset)
+
+        /// Create the export session and configure it with the composition, output URL and video file format.
+        guard let session = AVAssetExportSession(asset: asset, presetName: AVAssetExportPreset1920x1080) else {
+            throw CocoaError(.coderValueNotFound, userInfo: [NSLocalizedDescriptionKey: "Failed to create export session"])
+        }
+
+        session.videoComposition = composition
+        session.outputURL = outputURL
+        session.outputFileType = .mov
+
+        fputs("Exporting…", stderr)
+
+        /// Detach a new task to stream the export session's progress to the terminal.
+        Task.detached {
+            await showProgress(for: session)
+        }
+
+        /// Actually begin exporting.
+        /// This will block until the export has finished or failed.
+        await session.export()
+
+        /// Check for errors within the export session.
+        if let error = session.error {
+            throw CocoaError(.coderInvalidValue, userInfo: [NSLocalizedDescriptionKey: "Export session failed", NSUnderlyingErrorKey: error])
+        }
+
+        print("")
+        print("Done!")
+    }
+
+    private func buildComposition(with asset: AVAsset) async throws -> AVMutableVideoComposition {
         let videoTracks = try await asset.loadTracks(withMediaType: .video)
         guard let videoTrack = videoTracks.first else {
             throw CocoaError(.coderValueNotFound, userInfo: [NSLocalizedDescriptionKey: "Couldn't find video track in input file"])
@@ -104,33 +139,7 @@ struct EncodeForMastodon: AsyncParsableCommand {
         /// Ensure the composition will render at the specified size (currently 1920x1080).
         composition.renderSize = renderSize
 
-        /// Create the export session and configure it with the composition, output URL and video file format.
-        guard let session = AVAssetExportSession(asset: asset, presetName: AVAssetExportPreset1920x1080) else {
-            throw CocoaError(.coderValueNotFound, userInfo: [NSLocalizedDescriptionKey: "Failed to create export session"])
-        }
-
-        session.videoComposition = composition
-        session.outputURL = outputURL
-        session.outputFileType = .mov
-
-        fputs("Exporting…", stderr)
-
-        /// Detach a new task to stream the export session's progress to the terminal.
-        Task.detached {
-            await showProgress(for: session)
-        }
-
-        /// Actually begin exporting.
-        /// This will block until the export has finished or failed.
-        await session.export()
-
-        /// Check for errors within the export session.
-        if let error = session.error {
-            throw CocoaError(.coderInvalidValue, userInfo: [NSLocalizedDescriptionKey: "Export session failed", NSUnderlyingErrorKey: error])
-        }
-
-        print("")
-        print("Done!")
+        return composition
     }
 
     private func showProgress(for session: AVAssetExportSession) async {

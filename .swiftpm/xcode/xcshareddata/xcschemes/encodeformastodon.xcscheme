@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F4FD0D072950B3C60024C262"
+               BlueprintIdentifier = "encodeformastodon"
                BuildableName = "encodeformastodon"
                BlueprintName = "encodeformastodon"
-               ReferencedContainer = "container:encodeformastodon.xcodeproj">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,12 +45,18 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4FD0D072950B3C60024C262"
+            BlueprintIdentifier = "encodeformastodon"
             BuildableName = "encodeformastodon"
             BlueprintName = "encodeformastodon"
-            ReferencedContainer = "container:encodeformastodon.xcodeproj">
+            ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Users/insidegui/Downloads/RPReplay_Final1671886744.mov"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -62,10 +68,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4FD0D072950B3C60024C262"
+            BlueprintIdentifier = "encodeformastodon"
             BuildableName = "encodeformastodon"
             BlueprintName = "encodeformastodon"
-            ReferencedContainer = "container:encodeformastodon.xcodeproj">
+            ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
